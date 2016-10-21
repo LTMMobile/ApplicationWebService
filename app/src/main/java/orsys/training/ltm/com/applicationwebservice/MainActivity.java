@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         private long _timing;
 
+        // Exécution dans le Thread background (non UI)
         @Override
         protected String doInBackground(String... params)  {
 
@@ -135,12 +136,14 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
+        // Exécution dans le Thread UI
         @Override
         protected void onPreExecute() {
             _timing = System.currentTimeMillis();
             super.onPreExecute();
         }
 
+        // Exécution dans le Thread UI
         @Override
         protected void onProgressUpdate(Bitmap... values) {
             ImageView _imageView = (ImageView)findViewById(R.id.imageView1);
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
 
+        // Exécution dans le Thread UI
         @Override
         protected void onPostExecute(String s) {
             _timing = System.currentTimeMillis() - _timing;
