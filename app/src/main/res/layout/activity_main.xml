@@ -33,4 +33,5 @@
         android:id="@+id/imageView1"
         android:layout_below="@+id/button_req_json"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -23,7 +24,7 @@ import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.ArrayList;/**/
 import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
@@ -78,27 +79,38 @@ public class MainActivity extends AppCompatActivity {
                 Scanner s = new Scanner(is).useDelimiter("\\A");
                 String result = s.hasNext() ? s.next() : "";
                 Log.v("ltm", result);
-                JSONObject o = new JSONObject(result);
-                o.getJSONObject("results");
-            }catch(java.lang.Exception ex){ ex.printStackTrace(); }
+                publishProgress(result);
+
+            }catch(java.lang.Exception ex){
+                ex.printStackTrace();
+            }
 
             return null;
         }
 
         @Override
         protected void onProgressUpdate(String... values) {
-
             super.onProgressUpdate(values);
+
+            JSONObject o = null;
+            try {
+                o = new JSONObject(values[0]);
+                o.getJSONObject("results");
+                // etc.
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
-    class DownloadImages extends AsyncTask<String, Bitmap, String> {
+    class DownloadImages extends AsyncTask<Void, Bitmap, Void> {
 
         private long _timing;
 
         // Exécution dans le Thread background (non UI)
         @Override
-        protected String doInBackground(String... params)  {
+        protected Void doInBackground(Void... params)  {
 
             for(int t=0; t<_arrayStringImages.size(); t++) {
                 URL url = null;
@@ -154,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Exécution dans le Thread UI
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(Void s) {
             _timing = System.currentTimeMillis() - _timing;
             _b_req_images.setEnabled(true);
             super.onPostExecute(s);
