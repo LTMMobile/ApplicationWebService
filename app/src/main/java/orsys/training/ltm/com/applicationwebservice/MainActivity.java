@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> _arrayStringImages = new ArrayList<String>();
     private Button _b_req_images, _b_req_WS;
-    private String _WS = "http://maps.googleapis.com/maps/api/geocode/json?address=rue+de+La+paix+paris+France";
+    private String _WS = "https://maps.googleapis.com/maps/api/geocode/json?address=rue+de+La+paix+paris+France";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
                 InputStream is = new BufferedInputStream(urlConnection.getInputStream());
                 //Log.v("ltm", convertStreamToString(is));
+
                 Scanner s = new Scanner(is).useDelimiter("\\A");
                 String result = s.hasNext() ? s.next() : "";
+
                 Log.v("ltm", result);
                 publishProgress(result);
 
@@ -129,13 +131,14 @@ public class MainActivity extends AppCompatActivity {
                     InputStream is = new BufferedInputStream(urlConnection.getInputStream());
                     if( is != null ) {
                         Bitmap bmp = BitmapFactory.decodeStream(is);
+
                         publishProgress(bmp);
                         try {
                             Thread.sleep(200);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        //if( bmp != null ) // KO
+                        //if( bmp != null ) // OK
                         //_imageView.setImageBitmap( bmp ); // KO
                     }
                 } catch (IOException e) {
@@ -169,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void s) {
             _timing = System.currentTimeMillis() - _timing;
             _b_req_images.setEnabled(true);
+
             super.onPostExecute(s);
         }
 
