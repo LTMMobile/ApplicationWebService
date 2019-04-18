@@ -28,10 +28,16 @@
         android:layout_alignEnd="@+id/button_req_images" />
 
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
         android:id="@+id/imageView1"
+        android:layout_width="359dp"
+        android:layout_height="274dp"
         android:layout_below="@+id/button_req_json"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="108dp" />
 
 </RelativeLayout>
