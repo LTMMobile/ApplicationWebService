@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> _arrayStringImages = new ArrayList<String>();
     private Button _b_req_images, _b_req_WS;
-    private String _WS = "https://maps.googleapis.com/maps/api/geocode/json?address=rue+de+La+paix+paris+France";
+    private String _WS = "https://maps.googleapis.com/maps/api/geocode/json?address=Grande+ArcheLa%20+Defense+France";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Exécution dans le Thread background (non UI)
         @Override
-        protected Void doInBackground(Void... params)  {
+        protected Void doInBackground(Void... params)  { // worker thread
 
             for(int t=0; t<_arrayStringImages.size(); t++) {
                 URL url = null;
@@ -129,18 +129,16 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try {
                     InputStream is = new BufferedInputStream(urlConnection.getInputStream());
-                    if( is != null ) {
-                        Bitmap bmp = BitmapFactory.decodeStream(is);
+                    Bitmap bmp = BitmapFactory.decodeStream(is);
 
-                        publishProgress(bmp); // call the UI thread
-                        try {
-                            Thread.sleep(200);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    publishProgress(bmp); // call the UI thread
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                         //if( bmp != null ) // OK
                         //_imageView.setImageBitmap( bmp ); // KO
-                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
