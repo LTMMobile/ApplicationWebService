@@ -34,10 +34,21 @@
         android:layout_below="@+id/button_req_json"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="32dp"
         android:layout_marginTop="17dp"
+        android:layout_marginEnd="32dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="108dp" />
+        android:indeterminate="false" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,12 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> _arrayStringImages = new ArrayList<String>();
     private Button _b_req_images, _b_req_WS;
-    private String _WS = "https://maps.googleapis.com/maps/api/geocode/json?address=Grande+ArcheLa%20+Defense+France";
+    private String _WS = "https://maps.googleapis.com/maps/api/geocode/json?address=quai%20kleber+strasbourg+France&key=AIzaSyC2LABIAFIVcdiwtDhJAbMqlKpNtN58nBA";
+    private ProgressBar _progressBar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        _progressBar = (ProgressBar)findViewById(R.id.progressBar1);
+        _progressBar.setVisibility(View.INVISIBLE);
 
         // remplir le tableau
         fillImagesArray();
@@ -98,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 o = new JSONObject(values[0]);
                 o.getJSONObject("results");
+                Log.v("ltm", o.toString() );
                 // etc.
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -152,11 +158,13 @@ public class MainActivity extends AppCompatActivity {
         // Exécution dans le Thread UI
         @Override
         protected void onPreExecute() {
-            _timing = System.currentTimeMillis();
             super.onPreExecute();
+
+            _timing = System.currentTimeMillis();
+            _progressBar.setVisibility(View.VISIBLE);
         }
 
-        // Exécution dans le Thread UI
+        // Execution dans le Thread UI
         @Override
         protected void onProgressUpdate(Bitmap... values) {
             ImageView _imageView = (ImageView)findViewById(R.id.imageView1);
@@ -165,13 +173,15 @@ public class MainActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
 
-        // Exécution dans le Thread UI
+        // Execution dans le Thread UI
         @Override
         protected void onPostExecute(Void s) {
+            super.onPostExecute(s);
+
             _timing = System.currentTimeMillis() - _timing;
             _b_req_images.setEnabled(true);
-
-            super.onPostExecute(s);
+            _timing = System.currentTimeMillis();
+            _progressBar.setVisibility(View.INVISIBLE);
         }
 
     }
