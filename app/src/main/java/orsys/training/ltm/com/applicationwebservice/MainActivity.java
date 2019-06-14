@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> _arrayStringImages = new ArrayList<String>();
     private Button _b_req_images, _b_req_WS;
-    private String _WS = "https://maps.googleapis.com/maps/api/geocode/json?address=quai%20kleber+strasbourg+France&key=AIzaSyC2LABIAFIVcdiwtDhJAbMqlKpNtN58nBA";
+    private String _WS = "https://maps.googleapis.com/maps/api/geocode/json?address=quai%20kleber+strasbourg+France";
     private ProgressBar _progressBar = null;
 
     @Override
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 o = new JSONObject(values[0]);
                 o.getJSONObject("results");
-                Log.v("ltm", o.toString() );
+                // Log.v("ltm", o.toString() );
                 // etc.
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -167,10 +167,10 @@ public class MainActivity extends AppCompatActivity {
         // Execution dans le Thread UI
         @Override
         protected void onProgressUpdate(Bitmap... values) {
+            super.onProgressUpdate(values);
+
             ImageView _imageView = (ImageView)findViewById(R.id.imageView1);
             _imageView.setImageBitmap( values[0] );
-
-            super.onProgressUpdate(values);
         }
 
         // Execution dans le Thread UI
