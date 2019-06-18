@@ -1,6 +1,6 @@
 # ApplicationWebService
 
-Cours AMA Orsys
+Cours Android introduction
 
 Application invoquant :
 
