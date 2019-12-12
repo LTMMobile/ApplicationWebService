@@ -1,5 +1,6 @@
 package orsys.training.ltm.com.applicationwebservice;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -60,14 +61,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Bouton requête WS en JSON
         _b_req_WS = (Button)findViewById(R.id.button_req_json);
-        if(_b_req_WS != null){
-            _b_req_WS.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    new CallWS().execute();
-                }
-            });
-        }
+        if(_b_req_WS != null) _b_req_WS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new CallWS().execute();
+            }
+        });
     }
 
     class CallWS extends AsyncTask<Void, String, Void> {
@@ -119,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         // Exécution dans le Thread background (non UI)
         @Override
         protected Void doInBackground(Void... params)  { // worker thread
-
             for(int t=0; t<_arrayStringImages.size(); t++) {
                 URL url = null;
                 try {
@@ -139,11 +137,12 @@ public class MainActivity extends AppCompatActivity {
 
                     publishProgress(bmp); // call the UI thread
                     try {
-                        Thread.sleep(200);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                         //if( bmp != null ) // OK
+                        //ImageView _imageView = (ImageView)findViewById(R.id.imageView1);
                         //_imageView.setImageBitmap( bmp ); // KO
                 } catch (IOException e) {
                     e.printStackTrace();
