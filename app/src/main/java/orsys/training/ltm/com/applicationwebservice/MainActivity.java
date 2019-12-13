@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> _arrayStringImages = new ArrayList<String>();
     private Button _b_req_images, _b_req_WS;
-    private String _WS = "https://maps.googleapis.com/maps/api/geocode/json?address=quai%20kleber+strasbourg+France";
+    private String _WS = "https://geo.api.gouv.fr/communes?codePostal=78000";
     private ProgressBar _progressBar = null;
 
     @Override
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         private long _timing;
 
-        // Exécution dans le Thread background (non UI)
+        // Execution dans le Thread background (non UI)
         @Override
         protected Void doInBackground(Void... params)  { // worker thread
             for(int t=0; t<_arrayStringImages.size(); t++) {
