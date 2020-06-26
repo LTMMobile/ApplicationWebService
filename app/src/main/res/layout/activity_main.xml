@@ -10,22 +10,24 @@
     tools:context="orsys.training.ltm.com.applicationwebservice.MainActivity">
 
     <Button
+        android:id="@+id/button_req_images"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Requête images"
-        android:id="@+id/button_req_images"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:text="Requête images"
+        android:textSize="18sp" />
 
     <Button
+        android:id="@+id/button_req_json"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Requête JSON"
-        android:id="@+id/button_req_json"
         android:layout_below="@+id/button_req_images"
+        android:layout_alignEnd="@+id/button_req_images"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/button_req_images" />
+        android:text="Requête JSON"
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/imageView1"

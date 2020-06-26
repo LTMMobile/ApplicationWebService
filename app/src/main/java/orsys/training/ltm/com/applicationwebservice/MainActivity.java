@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> _arrayStringImages = new ArrayList<String>();
     private Button _b_req_images, _b_req_WS;
-    private String _WS = "https://geo.api.gouv.fr/communes?codePostal=78000";
+    private String _WS = "https://geo.api.gouv.fr/communes?codePostal=69001";
     private ProgressBar _progressBar = null;
 
     @Override
@@ -98,15 +98,15 @@ public class MainActivity extends AppCompatActivity {
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
 
-            JSONObject o = null;
+            /*JSONObject o = null;
             try {
-                o = new JSONObject(values[0]);
-                o.getJSONObject("results");
+                //o = new JSONObject(values[0]);
+                //o.getJSONObject("results");
                 // Log.v("ltm", o.toString() );
                 // etc.
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
+            }*/
 
         }
     }
@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
     class DownloadImages extends AsyncTask<Void, Bitmap, Void> {
 
         private long _timing;
-
         // Execution dans le Thread background (non UI)
         @Override
         protected Void doInBackground(Void... params)  { // worker thread
@@ -137,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
                     publishProgress(bmp); // call the UI thread
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -182,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
             _timing = System.currentTimeMillis();
             _progressBar.setVisibility(View.INVISIBLE);
         }
-
     }
 
     private void fillImagesArray() {
