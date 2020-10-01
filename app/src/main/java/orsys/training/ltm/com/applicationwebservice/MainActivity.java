@@ -75,14 +75,12 @@ public class MainActivity extends AppCompatActivity {
                 url = new URL(_WS);
                 HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
                 InputStream is = new BufferedInputStream(urlConnection.getInputStream());
-                //Log.v("ltm", convertStreamToString(is));
 
                 Scanner s = new Scanner(is).useDelimiter("\\A");
                 String result = s.hasNext() ? s.next() : "";
 
                 Log.v("ltm", result);
                 publishProgress(result);
-
             }catch(java.lang.Exception ex){
                 ex.printStackTrace();
             }
