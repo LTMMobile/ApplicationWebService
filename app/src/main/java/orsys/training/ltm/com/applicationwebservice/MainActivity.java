@@ -27,9 +27,9 @@ import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> _arrayStringImages = new ArrayList<String>();
+    final private ArrayList<String> _arrayStringImages = new ArrayList<>();
     private Button _b_req_images, _b_req_WS;
-    private String _WS = "https://geo.api.gouv.fr/communes?codePostal=69001";
+    final private String _WS = "https://geo.api.gouv.fr/communes?codePostal=69001";
     private ProgressBar _progressBar = null;
 
     @Override
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 Scanner s = new Scanner(is).useDelimiter("\\A");
                 String result = s.hasNext() ? s.next() : "";
 
-                Log.v("ltm", result);
+                //Log.v("ltm", result);
                 publishProgress(result);
             }catch(java.lang.Exception ex){
                 ex.printStackTrace();
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
 
+            Log.v("ltm", values[0]);
             /*JSONObject o = null;
             try {
                 //o = new JSONObject(values[0]);
